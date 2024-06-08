@@ -1,0 +1,39 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ExceptionHandler Class</Title>
+      <Shortcut>exceptionhandler</Shortcut>
+      <Description>Snippet for creating a custom exception handler class</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
+
+public class ExceptionHandler
+{
+    public async Task HandleException(HttpContext context, Exception exception)
+    {
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+        var response = new
+        {
+            message = "Ocorreu um erro no servidor."
+        };
+
+        await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
+    }
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
