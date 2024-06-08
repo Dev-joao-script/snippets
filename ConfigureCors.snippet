@@ -1,0 +1,25 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Configure CORS</Title>
+      <Shortcut>configurecors</Shortcut>
+      <Description>Snippet para configurar políticas CORS</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+app.UseCors(options =>
+{
+    options.WithOrigins("http://example.com", "https://example2.com")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,38 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Delete</Title>
+      <Shortcut>delete</Shortcut>
+      <Description>Snippet para o método Delete</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>url</ID>
+          <ToolTip>URL</ToolTip>
+          <Default>url</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+public T Delete<T>(string $url$)
+{
+    try
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $url$);
+        return EnvioClient<T>(request);
+    }
+    catch (Exception ex)
+    {
+        throw new ArgumentException($"Erro ao realizar o DELETE na URL: $url$. Detalhes: {ex.Message}");
+    }
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

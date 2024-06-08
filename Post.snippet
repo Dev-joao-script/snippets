@@ -1,0 +1,45 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Post</Title>
+      <Shortcut>post</Shortcut>
+      <Description>Snippet para o método Post</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>url</ID>
+          <ToolTip>URL</ToolTip>
+          <Default>url</Default>
+        </Literal>
+        <Literal>
+          <ID>obj</ID>
+          <ToolTip>Objeto</ToolTip>
+          <Default>obj</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+public T Post<T>(string $url$, object $obj$)
+{
+    try
+    {
+        var request = new HttpRequestMessage(HttpMethod.Post, $url$);
+        string json = JsonConvert.SerializeObject($obj$);
+        request.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        return EnvioClient<T>(request);
+    }
+    catch (Exception ex)
+    {
+        throw new ArgumentException($"Não foi possível realizar o POST na url: $url$. Detalhes: {ex.Message}");
+    }
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

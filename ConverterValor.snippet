@@ -1,0 +1,53 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ConverterValor</Title>
+      <Shortcut>convertervalor</Shortcut>
+      <Description>Snippet para o método ConverterValor</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>rdr</ID>
+          <ToolTip>DataReader</ToolTip>
+          <Default>rdr</Default>
+        </Literal>
+        <Literal>
+          <ID>nome</ID>
+          <ToolTip>Nome da Coluna</ToolTip>
+          <Default>nome</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+private T ConverterValor<T>(SqlDataReader $rdr$, string $nome$)
+{
+    try
+    {
+        if ($rdr$[$nome$] == DBNull.Value)
+            return default;
+        else
+        {
+            object value = $rdr$[$nome$];
+
+            Type t = typeof(T);
+            t = Nullable.GetUnderlyingType(t) ?? t;
+
+            return (value == null || DBNull.Value.Equals(value)) ?
+                default : (T)Convert.ChangeType(value, t);
+        }
+    }
+    catch (Exception ex)
+    {
+        throw new InvalidCastException($"Não foi possível converter o valor retornado do SqlServer para a coluna: $nome$, mensagem: {ex.Message}");
+    }
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

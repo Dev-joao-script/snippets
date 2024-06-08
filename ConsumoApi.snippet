@@ -1,0 +1,45 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ConsumoApi</Title>
+      <Shortcut>consumoapi</Shortcut>
+      <Description>Snippet para a classe ConsumoApi</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>factory</ID>
+          <ToolTip>IHttpClientFactory</ToolTip>
+          <Default>factory</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+public class ConsumoApi
+{
+    private readonly IHttpClientFactory Factory;
+    public ConsumoApi(IHttpClientFactory $factory$)
+    {
+        Factory = $factory$;
+    }
+    private T EnvioClient<T>(HttpRequestMessage request)
+    {
+        var client = Factory.CreateClient();
+        var response = client.SendAsync(request).Result;
+        var result = response.Content.ReadAsStringAsync().Result;
+
+        if (response.IsSuccessStatusCode)
+            return JsonConvert.DeserializeObject<T>(result);
+
+        throw new ArgumentException($"Status Code: {(int)response.StatusCode}. Content: {result}");
+    }
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

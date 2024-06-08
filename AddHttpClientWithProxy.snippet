@@ -1,0 +1,46 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>AddHttpClient with Proxy</Title>
+      <Shortcut>Clientproxy</Shortcut>
+      <Description>Snippet para adicionar HttpClient com proxy</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>proxyUrl</ID>
+          <ToolTip>URL do Proxy</ToolTip>
+          <Default>http://proxy.example.com:8080</Default>
+        </Literal>
+        <!-- Uncomment this section if credentials are required -->
+        <!--
+        <Literal>
+          <ID>username</ID>
+          <ToolTip>Nome de usuário</ToolTip>
+          <Default>username</Default>
+        </Literal>
+        <Literal>
+          <ID>password</ID>
+          <ToolTip>Senha</ToolTip>
+          <Default>password</Default>
+        </Literal>
+        -->
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+builder.Services.AddHttpClient("MyProxyClient", client =>
+{
+    // Configurações específicas do proxy
+    client.DefaultProxy = new WebProxy("$proxyUrl$");
+    // Você também pode adicionar credenciais, se necessário
+    // client.DefaultProxy.Credentials = new NetworkCredential("$username$", "$password$");
+});
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

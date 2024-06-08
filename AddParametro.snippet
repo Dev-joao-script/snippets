@@ -1,0 +1,43 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>AddParametro</Title>
+      <Shortcut>addparametro</Shortcut>
+      <Description>Snippet para o método AddParametro</Description>
+      <Author>SeuNome</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>cmd</ID>
+          <ToolTip>SqlCommand</ToolTip>
+          <Default>cmd</Default>
+        </Literal>
+        <Literal>
+          <ID>nome</ID>
+          <ToolTip>Nome do Parâmetro</ToolTip>
+          <Default>nome</Default>
+        </Literal>
+        <Literal>
+          <ID>parametro</ID>
+          <ToolTip>Valor do Parâmetro</ToolTip>
+          <Default>parametro</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+private void AddParametro(SqlCommand $cmd$, string $nome$, object $parametro$)
+{
+    if ($parametro$ == null)
+        $cmd$.Parameters.AddWithValue($nome$, DBNull.Value);
+    else
+        $cmd$.Parameters.AddWithValue($nome$, $parametro$);
+}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
